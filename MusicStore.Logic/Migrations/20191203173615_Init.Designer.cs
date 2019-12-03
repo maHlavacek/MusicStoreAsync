@@ -9,7 +9,7 @@ using MusicStore.Logic.DataContext.Db;
 namespace MusicStore.Logic.Migrations
 {
     [DbContext(typeof(DbMusicStoreContext))]
-    [Migration("20191203172533_Init")]
+    [Migration("20191203173615_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
