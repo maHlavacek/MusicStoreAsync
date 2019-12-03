@@ -102,23 +102,23 @@ namespace MusicStore.Logic.DataContext
         #region Async-Methods
         public override Task<int> CountAsync<I, E>()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Count<I, E>());
         }
         public override Task<E> CreateAsync<I, E>()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Create<I, E>());
         }
         public override Task<E> InsertAsync<I, E>(I entity)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Insert<I, E>(entity));
         }
         public override Task<E> UpdateAsync<I, E>(I entity)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Update<I, E>(entity));
         }
         public override Task<E> DeleteAsync<I, E>(int id)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Delete<I, E>(id));
         }
         #endregion Async-Methods
 
