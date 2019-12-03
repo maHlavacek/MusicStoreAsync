@@ -66,26 +66,7 @@ namespace MusicStore.Adapters
 
         public IEnumerable<TContract> GetAll()
         {
-            using (var client = GetClient(BaseUri))
-            {
-                var task = Task.Run(async () => await client.GetAsync(ExtUri));
-                HttpResponseMessage response = task.Result;
-                
-                if (response.IsSuccessStatusCode)
-                {
-                    var task2 = Task.Run(async () => await response.Content.ReadAsStringAsync());
-                    string stringData = task2.Result;
-                    return JsonConvert.DeserializeObject<TEntity[]>(stringData) as IEnumerable<TContract>;
-                }
-                else
-                {
-                    var task2 = Task.Run(async () => await response.Content.ReadAsStringAsync());
-                    string errorMessage = $"{response.ReasonPhrase}: {task2.Result}";
-
-                    System.Diagnostics.Debug.WriteLine("{0} ({1})", (int)response.StatusCode, errorMessage);
-                    throw new AdapterException((int)response.StatusCode, errorMessage);
-                }
-            }
+            return GetAllAsync().Result;
         }
 
         public TContract GetById(int id)
@@ -137,9 +118,26 @@ namespace MusicStore.Adapters
             return Task.Run(() => Count());
         }
 
-        public Task<IEnumerable<TContract>> GetAllAsync()
+        public async Task<IEnumerable<TContract>> GetAllAsync()
         {
-            return Task.Run(() => GetAll());
+            using (var client = GetClient(BaseUri))
+            {
+                HttpResponseMessage response = await client.GetAsync(ExtUri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string stringData = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<TEntity[]>(stringData) as IEnumerable<TContract>;
+                }
+                else
+                {
+                    string stringData = await response.Content.ReadAsStringAsync();
+                    string errorMessage = $"{response.ReasonPhrase}: {stringData}";
+
+                    System.Diagnostics.Debug.WriteLine("{0} ({1})", (int)response.StatusCode, errorMessage);
+                    throw new AdapterException((int)response.StatusCode, errorMessage);
+                }
+            }
         }
 
         public Task<TContract> GetByIdAsync(int id)
