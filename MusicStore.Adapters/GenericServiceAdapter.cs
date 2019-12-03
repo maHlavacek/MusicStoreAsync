@@ -134,37 +134,37 @@ namespace MusicStore.Adapters
 
         public Task<int> CountAsync()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Count());
         }
 
         public Task<IEnumerable<TContract>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => GetAll());
         }
 
         public Task<TContract> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => GetById(id));
         }
 
         public Task<TContract> CreateAsync()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Create());
         }
 
         public Task<TContract> InsertAsync(TContract entity)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Insert(entity));
         }
 
         public Task UpdateAsync(TContract entity)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Update(entity));
         }
 
         public Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            return Task.Run(()=> Delete(id));
         }
 
         public void Dispose()

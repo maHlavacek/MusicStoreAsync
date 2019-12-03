@@ -7,12 +7,12 @@ namespace MusicStore.ConApp
     {
         static async Task Main(string[] args)
         {
-            // await CopyDataFromToLogicAsync(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
-            CopyDataFromToByLogic(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
+            await CopyDataFromToLogicAsync(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
+            // CopyDataFromToByLogic(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
+
             // Output
             // PrintDataAdapter(Adapters.Factory.AdapterType.Service);
-
-            PrintDataLogic(Logic.Factory.PersistenceType.Db);
+            await PrintDataLogicAsync(Logic.Factory.PersistenceType.Db);
         }
 
         static void CopyDataFromToByLogic(Logic.Factory.PersistenceType source, Logic.Factory.PersistenceType target)
