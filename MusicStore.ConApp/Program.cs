@@ -7,10 +7,10 @@ namespace MusicStore.ConApp
     {
         static async Task Main(string[] args)
         {
-            //           await CopyDataFromToLogicAsync(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
+            // await CopyDataFromToLogicAsync(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
             CopyDataFromToByLogic(Logic.Factory.PersistenceType.Csv, Logic.Factory.PersistenceType.Db);
             // Output
-            //PrintDataAdapter(Adapters.Factory.AdapterType.Service);
+            // PrintDataAdapter(Adapters.Factory.AdapterType.Service);
 
             PrintDataLogic(Logic.Factory.PersistenceType.Db);
         }

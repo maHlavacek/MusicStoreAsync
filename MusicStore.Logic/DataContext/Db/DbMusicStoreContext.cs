@@ -183,7 +183,7 @@ namespace MusicStore.Logic.DataContext.Db
             where I : IIdentifiable
             where E : IdentityObject, I
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Count<I, E>());
         }
         public Task<E> CreateAsync<I, E>()
             where I : IIdentifiable
@@ -195,23 +195,23 @@ namespace MusicStore.Logic.DataContext.Db
             where I : IIdentifiable
             where E : IdentityObject, ICopyable<I>, I, new()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Insert<I, E>(entity));
         }
         public Task<E> UpdateAsync<I, E>(I entity)
             where I : IIdentifiable
             where E : IdentityObject, ICopyable<I>, I, new()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Update<I, E>(entity));
         }
         public Task<E> DeleteAsync<I, E>(int id)
             where I : IIdentifiable
             where E : IdentityObject, I
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Delete<I, E>(id));
         }
         public Task SaveAsync()
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Save());
         }
         #endregion Async-Methods
 
